@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.apache.commons.io.FileUtils;
@@ -46,7 +47,7 @@ public class Debug {
 				FileUtils.copyFile(screenshot, output);
 				Debug.Trace("Writing screenshot to: " + output);
 				
-			} catch (Exception e) {
+			} catch (IOException|StaleElementReferenceException e) {
 				Debug.ExceptionError(e);
 			}			
 		} else {
@@ -77,8 +78,8 @@ public class Debug {
 				File output = new File(Files.FileScreenshot);
 				FileUtils.copyFile(screenshot, output);
 				Debug.Trace("Writing screenshot to: " + output);
-			} catch (IOException ioe) {
-				Debug.ExceptionError(ioe);
+			} catch (IOException|StaleElementReferenceException e) {
+				Debug.ExceptionError(e);
 			}			
 		} else {
 			Debug.Trace("Screenshot saving is disabled.");
