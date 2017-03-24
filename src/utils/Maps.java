@@ -21,14 +21,14 @@ public class Maps {
 
 	//Set action helper descriptions
 	public static void SetActionDescriptions() {
-		ActionDescriptions.put("LOAD OBJECT REPOSITORY", "Load Object Repository: ");
-		ActionDescriptions.put("CLICK", "Click object ");
-		ActionDescriptions.put("TYPE", "Type text "); 
-		ActionDescriptions.put("VALIDATE", "Validate if ");
-		ActionDescriptions.put("SELECT", "Select item ");
-		ActionDescriptions.put("HOVER", "Hover over ");
-		ActionDescriptions.put("STORE", "Store the text value of ");
-		ActionDescriptions.put("GET", "Return the value of ");
+		ActionDescriptions.put("LOAD OBJECT REPOSITORY", "Load Object Repository:");
+		ActionDescriptions.put("CLICK", "Click object");
+		ActionDescriptions.put("TYPE", "Type text"); 
+		ActionDescriptions.put("VALIDATE", "Validate if");
+		ActionDescriptions.put("SELECT", "Select item");
+		ActionDescriptions.put("HOVER", "Hover over");
+		ActionDescriptions.put("STORE", "Store the text value of");
+		ActionDescriptions.put("GET", "Return the value of");
 	}
 
 	public static String GetMapValue(LinkedHashMap<String, String> map, String key) {

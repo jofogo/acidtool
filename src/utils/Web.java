@@ -269,12 +269,6 @@ public class Web {
 							} else {
 								status = 2;
 							}
-						} else if (argument.toUpperCase().contains("DOES NOT EXIST")) {
-							if (! Web.ValidateObjectExists()) {
-								status = 0;
-							} else {
-								status = 2;
-							}
 						} else if (argument.toUpperCase().contains("IS TICKED")) {
 							if (Web.ValidateObjectEnabled()) {
 								status = 0;
@@ -316,10 +310,19 @@ public class Web {
 			if (Global.ObjectAction != "") {
 				if(action.toUpperCase().contains("VALIDATE") && argument.length()==0) {
 					Global.ctrActionStatus = 3; //skip
-				} else if (argument.equals("SKIP")){
+				} else if (argument.equalsIgnoreCase("SKIP")){
 					Global.ctrActionStatus = 3; //skip
-				} else {
-					if (Web.FindElement(identifier) != null) {
+				} else if (argument.equalsIgnoreCase("DOES NOT EXIST")) {
+					if (FindElement(identifier) != null) {
+						Global.ctrActionStatus = 2;
+						TestCase.ctrFail++;
+					} else {
+						Global.ctrActionStatus = 0;
+						TestCase.ctrPass++;
+					}
+				
+				}	else {
+					if (FindElement(identifier) != null) {
 						
 						if (Perform(action, argument)==0) {
 							Global.ctrActionStatus = 0; //pass

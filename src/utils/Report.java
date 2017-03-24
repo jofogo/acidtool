@@ -119,7 +119,7 @@ public class Report {
 		for (int testIdx = 0; testIdx < Collections.ListGetTotalItems(Global.TestSummary); testIdx++) {
 			List<String> testLine = Scribe.StringConvertCSVToList(Collections.ListGetValueFromIndex(Global.TestSummary, testIdx));
 			labels += "\"" + testLine.get(1) + "\",";
-			data += Integer.parseInt(testLine.get(7)) + ",";
+			data += testLine.get(7) + ",";
 		}
 		
 		data = Scribe.StringRemoveLastChar(data);
