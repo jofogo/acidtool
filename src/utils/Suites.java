@@ -8,7 +8,7 @@ public class Suites {
 	private static int ctrSkip = 4;
 	public static int GetTestListCount() {
 		try {
-			Debug.Log("Retrieving the list of test suites from the config file.");
+			Debug.Log("Retrieving the list of test suites from the config file: " + Files.FileConfig );
 			TestSuiteList = Files.CSVToList(Files.FileConfig);
 			int ctrTestList = TestSuiteList.size() - ctrSkip;
 			if (! TestSuiteList.isEmpty() && ctrTestList > 0) {

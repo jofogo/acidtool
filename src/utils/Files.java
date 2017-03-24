@@ -32,7 +32,7 @@ public class Files {
 				return true;
 			}
 		} catch (NullPointerException npe) {
-			Debug.Trace(path + " not found.");
+			Debug.Log(path + " not found.");
 		}
 		return false;
 	}
@@ -59,7 +59,7 @@ public class Files {
 				Debug.ExceptionError(se);
 			}
 		}
-		Debug.Log(path + " directory exists.");
+		Debug.Trace(path + " directory exists.");
 	}
 	
 	
