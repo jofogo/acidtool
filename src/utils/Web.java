@@ -189,14 +189,7 @@ public class Web {
 					status = 0;
 					break;
 				case "HOVER":
-					Actions builder = new Actions(Browser.BrowserDriver);
-					builder.moveToElement(e).build().perform();
-					try {
-						e.sendKeys("");
-						status = 0;
-					} catch (WebDriverException wde) {
-						
-					}
+					FocusOnObject();
 					status = 0;
 					break;
 				case "SELECT":
@@ -355,7 +348,17 @@ public class Web {
 		}
 	}	
 	
-	
+	public static int FocusOnObject() {
+		WebElement e = element;
+		Actions builder = new Actions(Browser.BrowserDriver);
+		builder.moveToElement(e).build().perform();
+		try {
+			e.sendKeys("");
+		} catch (WebDriverException wde) {
+			return 2;
+		}
+		return 0;
+	}
 	
 	public static boolean ValidateObjectAccessible() {
 		if (ValidateObjectExists() && ValidateObjectEnabled()) {

@@ -179,12 +179,12 @@ public class Files {
 		String filePath = Global.ProjectPath + Files.DirScreenshots;
 		CreateDirectory(filePath);
 		filePath += String.format("%03d",Global.ctrSShots) + "_";
-		filePath += Global.TestSuiteName.replaceAll("\\s", "") + ".";
+		filePath += Global.TestSuiteName.replaceAll("\\s", "");// + ".";
 		if (Global.ObjectName != null) {
-			filePath += Global.ObjectName.replaceAll("\\s", "") + ".";
+			filePath += Global.ObjectName.replaceAll("\\s", "");// + ".";
 		}
 		if(Global.TestCaseName != null) {
-			Files.FileScreenshot += Global.TestCaseName.replaceAll("\\s", "") + "."; 
+			Files.FileScreenshot += Global.TestCaseName.replaceAll("\\s", "");// + "."; 
 		} 
 		
 

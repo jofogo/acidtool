@@ -46,7 +46,7 @@ public class Report {
 		WriteToHTMLSummary("<b> Browser: </b> " + Global.BrowserName + "<br />");
 		WriteToHTMLSummary("<b> Started: </b> " + Global.ProcessStart + "<br />");
 		WriteToHTMLSummary("<b> Ended: </b> " + Global.ProcessEnd + "<br />");
-		WriteToHTMLSummary("<b> Elapsed Time: </b> " + Global.ProcessElapsed + "secs(s) <br />");
+		WriteToHTMLSummary("<b> Elapsed Time: </b> " + Global.ProcessElapsed + " secs(s) <br />");
 		WriteToHTMLSummary("</div>");
 	}
 	
@@ -137,7 +137,7 @@ public class Report {
 		templine = "labels: [" + labels +"],";
 		WriteToHTMLSummary(templine); //
 		WriteToHTMLSummary("datasets: [{");			
-		WriteToHTMLSummary(" label: 'Time to complete(secs)',");			
+		WriteToHTMLSummary(" label: 'Execution rate(%)',");			
 		WriteToHTMLSummary(" borderColor: \"#000000\",");			
 		WriteToHTMLSummary(" pointBorderWidth: 2,");			
 		WriteToHTMLSummary(" pointHoverRadius: 5,");			
@@ -173,9 +173,9 @@ public class Report {
 			}
 			String perfData = "";
 			perfData += "<td> " + perfLine.get(0) + " </td> ";
-			perfData += "<td> " + perfLine.get(1) + " </td> ";
-			perfData += "<td> " + perfLine.get(2) + " </td> ";
-			perfData += "<td> " + perfLine.get(3) + " </td> ";
+			perfData += "<td align=\"center\"> " + perfLine.get(1) + " </td> ";
+			perfData += "<td align=\"center\"> " + perfLine.get(2) + " </td> ";
+			perfData += "<td align=\"right\"> " + perfLine.get(3) + " </td> ";
 			WriteToHTMLSummary(perfData);
 			WriteToHTMLSummary("</tr>");
 		}
@@ -230,13 +230,13 @@ public class Report {
 			String testdata = "";
 			testdata += "<td> " + testLine.get(0) + " </td> ";
 			testdata += "<td> " + testLine.get(1) + " </td> ";
-			testdata += "<td> " + testLine.get(2) + " </td> ";
-			testdata += "<td> " + testLine.get(3) + " </td> ";
-			testdata += "<td> " + testLine.get(4) + " </td> ";
-			testdata += "<td> " + testLine.get(5) + " </td> ";
-			testdata += "<td> " + testLine.get(6) + " </td> ";
-			testdata += "<td> " + (Integer.valueOf(testLine.get(5)) + Integer.valueOf(testLine.get(6))) + " </td> ";
-			testdata += "<td> " + testLine.get(7) + " </td> ";
+			testdata += "<td align=\"center\"> " + testLine.get(2) + " </td> ";
+			testdata += "<td align=\"center\"> " + testLine.get(3) + " </td> ";
+			testdata += "<td align=\"right\"> " + testLine.get(4) + " </td> ";
+			testdata += "<td align=\"right\"> " + testLine.get(5) + " </td> ";
+			testdata += "<td align=\"right\"> " + testLine.get(6) + " </td> ";
+			testdata += "<td align=\"right\"> " + (Integer.valueOf(testLine.get(5)) + Integer.valueOf(testLine.get(6))) + " </td> ";
+			testdata += "<td align=\"right\"> " + testLine.get(7) + " </td> ";
 			testdata += "<td> " + testLine.get(8) + " </td>";
 			WriteToHTMLSummary(testdata);
 			WriteToHTMLSummary("</tr>");
