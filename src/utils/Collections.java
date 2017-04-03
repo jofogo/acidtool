@@ -124,7 +124,12 @@ public class Collections {
 	}
 	
 	public static String ListGetValueFromKey(List<String[]> list, String key) {
-		return ListGetValueFromKey(list, key, 1);
+		try {
+			return ListGetValueFromKey(list, key, 1); 
+		} catch (NullPointerException npe) {
+			return "";
+		}
+	
 	}
 	
 	//Get the value from a list by key (first item on the list)

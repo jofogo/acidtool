@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 
 public class Web {
 	public static WebElement element;
@@ -174,7 +176,7 @@ public class Web {
 		WebElement e = element;
 		String[] argSplit = argument.split(":");
 		if (argSplit.length > 1) {
-			if (Maps.GetTestValue(argSplit[1])!=null) {
+			if (Maps.GetTestValue(argSplit[1])!=null && argSplit[0].equalsIgnoreCase("get")) {
 				argument = Maps.GetTestValue(argSplit[1]);
 				Global.ObjectParameter = argument;
 			}
@@ -194,6 +196,7 @@ public class Web {
 					break;
 				case "SELECT":
 					try {
+						
 						Select select = new Select(e);
 						if(argument != "") {
 							select.selectByVisibleText(argument);
@@ -209,28 +212,37 @@ public class Web {
 					break;
 				case "TOGGLE":
 					try {
-						if(argument.toUpperCase().equals("TRUE")) {
-							if (!e.isSelected()) {
-								e.click();
-							}
-							status = 0;
-						} else {
-							if (e.isSelected()) {
-								e.click();
-							}
-							status = 0;
-						}
-					} catch (NoSuchElementException nsee) {
-						Debug.Log("Select value: " + argument + " not found in list.");
-						status = 5;
+						WebElement opt = e.findElement(By.cssSelector("input[value='" + argument + "'"));
+						opt.click();
+						status = 0;
+					} catch (Exception ee) {
+						Debug.ExceptionError(ee);
+						status = 2;
 					}
+					
+					
+					
 					break;
 				case "TYPE":
 					//element.sendKeys(argument);
-					e.clear();
+					for (int typeCtr=0; typeCtr<Global.ctrMaxStepRetry;typeCtr++) {
+						try {
+							e.clear();
+							} catch (InvalidElementStateException iese) {
+								try {
+									Thread.sleep(1000);
+								} catch (InterruptedException ie) {
+									
+								}
+							}
+					}
 					if(argument != "") {
-						e.clear();
-						e.sendKeys(argument);
+						try {
+							e.sendKeys(argument);
+						} catch (InvalidElementStateException iese) {
+							Debug.ExceptionError(iese);
+							status = 2;
+						}
 /*						if (Environment.ActionObject.toUpperCase().contains("PASSWORD") && Run.Password != "") {
 							element.clear();
 							element.sendKeys(Run.Password);
@@ -384,6 +396,10 @@ public class Web {
 		if (element.getText().equalsIgnoreCase(text)) {
 			return true;
 		}
+		if (element.getText().toUpperCase().indexOf(text.toUpperCase())>0  ) {
+			return true;
+		}
+		Debug.Trace("Text validation failed: " + text + " is not in " + element.getText());
 		return false;
 	}
 	

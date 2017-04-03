@@ -26,6 +26,7 @@ public class Maps {
 		ActionDescriptions.put("TYPE", "Type text"); 
 		ActionDescriptions.put("VALIDATE", "Validate if");
 		ActionDescriptions.put("SELECT", "Select item");
+		ActionDescriptions.put("TOGGLE", "Toggle option");
 		ActionDescriptions.put("HOVER", "Hover over");
 		ActionDescriptions.put("STORE", "Store the text value of");
 		ActionDescriptions.put("GET", "Return the value of");

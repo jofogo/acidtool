@@ -3,7 +3,7 @@ package utils;
 public class Stub {
 	
 	public static void Project() {
-		Debug.Verbosity = 4;
+		Debug.Verbosity = 2;
 		try {
 			Global.ProjectName.isEmpty();
 		} catch (NullPointerException npe) {

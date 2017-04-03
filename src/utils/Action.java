@@ -97,10 +97,15 @@ public class Action {
 						case "LOAD OBJECT REPOSITORY":
 							ActionStat = LoadTestObjects();
 							break;
+						case "STORE":
+							if (FindObjectID(Global.ObjectName)=="" && Global.ObjectParameter!="") {
+								Maps.StoreTestValue(Global.ObjectParameter, Global.ObjectName);
+								break;
+							} 
 						default:
 							Global.ObjectID = FindObjectID(Global.ObjectName);
 							
-							if (Global.ObjectID!=null) {
+							if (Global.ObjectID != "") {
 								Web.PerformOnObject(Global.ObjectAction, Global.ObjectID, Global.ObjectParameter );
 								Debug.Trace("Action: " + Global.ObjectAction + " Object: " + Global.ObjectName + " ID: " + Global.ObjectID +  " Parameter: " + Global.ObjectParameter);
 							}
