@@ -22,7 +22,7 @@ public class Files {
 	public static String DirLogs = "\\Logs\\";
 	public static String DirScreenshots = "\\Screenshots\\";
 	public static String DirResults = "\\TestResults\\";
-	public static String FileConfig, FileData, FileLog, FileScreenshot, FileTestResults, FileReport, FileCSS;
+	public static String FileConfig, FileRetestConfig, FileData, FileLog, FileScreenshot, FileTestResults, FileReport, FileCSS;
 	public static String FileTestActions, FileTestObjects, FileTestCase, FileTestSuite;
 	
 	public static boolean CheckIfExists(String path) {
@@ -117,6 +117,11 @@ public class Files {
 		Files.FileConfig = Global.ProjectPath + "\\" + Global.ProjectName + Global.fileConfigFormat;
 	}
 
+	public static void SetFileRetestConfig() {
+		Global.TestSuiteName = Global.ProjectName + "_Retest";
+		SetFileTestSuite();
+	}
+	
 	public static void SetFileConfig(String configName) {
 		Files.FileConfig = Global.ProjectPath + "\\" + configName + Global.fileConfigFormat;
 	}

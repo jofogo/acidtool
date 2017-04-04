@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-@SuppressWarnings("unused")
+
 public class Action {
 	public static List<String[]> TestActionList;
 	public static List<String[]> TestObjectList;
@@ -108,6 +108,9 @@ public class Action {
 							if (Global.ObjectID != "") {
 								Web.PerformOnObject(Global.ObjectAction, Global.ObjectID, Global.ObjectParameter );
 								Debug.Trace("Action: " + Global.ObjectAction + " Object: " + Global.ObjectName + " ID: " + Global.ObjectID +  " Parameter: " + Global.ObjectParameter);
+							} else {
+								ActionStat = 4;
+								Global.ctrActionStatus = 4;
 							}
 							break;
 						}

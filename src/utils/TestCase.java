@@ -72,7 +72,16 @@ public class TestCase {
 					Global.TestActionParms = StepLine[1];
 					Debug.Log("Loading Test Action: " + Global.TestActionName + " with parameter(s): " + Global.TestActionParms);
 					Action.Load();
+/*					if(Global.ctrActionStatus==0) {
+						TestCase.ctrPass++;
+					} else {
+						TestCase.ctrFail++;
+					}*/
 				}
+/*				if (TestCase.ctrFail > 0) {
+					TestCaseStat = "Fail";
+				} else {
+				}*/
 				TestCaseStat = "Pass";
 				Timers.TestCaseEnd();
 			} else {

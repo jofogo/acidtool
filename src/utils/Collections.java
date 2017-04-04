@@ -48,6 +48,12 @@ public class Collections {
 		Global.Config = Arrays.copyOf(Global.Config,  len + 1);
 		Global.Config[len] = line;
 	}
+
+	public static void writeRTConfig (String line) {
+		int len = Global.RTConfig.length;
+		Global.RTConfig = Arrays.copyOf(Global.RTConfig,  len + 1);
+		Global.RTConfig[len] = line;
+	}
 	
 	public static void writeLog (String line) {
 		int len = Global.Logs.length;

@@ -63,6 +63,7 @@ public class Global {
 
 	public static String[] Logs = new String[0]; //Debug file
 	public static String[] Config = new String[0]; //Config file
+	public static String[] RTConfig = new String[0]; //Retest Config file
 	public static String[] ReportAll = new String[0]; //HTML Overall report file
 	public static String[] ReportTest = new String[0]; //HTML Test case report file
 	public static String[] CSS = new String[0]; //CSS file

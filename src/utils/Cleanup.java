@@ -20,11 +20,30 @@ public class Cleanup {
 		Browser.Close();
 		Debug.Log("Total elapsed time (secs): " + Timers.ProcessTotal());
 		Debug.Log("Writing log file to : " + Files.FileLog);
+		WriteRetestSuite();
 		Summarize();
 		Report.WriteHTMLReport();
+
 		Files.WriteToFile(Global.Logs, Files.FileLog);
 		System.exit(0);
 		
+	}
+	
+	private static void WriteRetestSuite() {
+		int ctrFailedTCs = 0;
+		Collections.writeRTConfig("Test Cases,Input,Output");
+		for (int testIdx = 0; testIdx < Collections.ListGetTotalItems(Global.TestSummary); testIdx++) {
+			List<String> testLine = Scribe.StringConvertCSVToList(Collections.ListGetValueFromIndex(Global.TestSummary, testIdx));
+			if (testLine.get(8).equalsIgnoreCase("Fail")) {
+				ctrFailedTCs++;
+				Collections.writeRTConfig(testLine.get(1) + ",");
+			}
+		}			
+		if (ctrFailedTCs > 0) {
+			Debug.Log("Failed test cases found: " + ctrFailedTCs + ". Writing Re-test suite...");
+			Files.SetFileRetestConfig();
+			Files.WriteToFile(Global.RTConfig, Files.FileTestSuite);
+		}
 	}
 	
 	public static void Summarize() {
@@ -57,6 +76,7 @@ public class Cleanup {
 					"," + testLine.get(4) + "," + testLine.get(5) + "," + testLine.get(6) + "," + (Integer.valueOf(testLine.get(5)) + Integer.valueOf(testLine.get(6))) +
 					"," + testLine.get(7) + "," + testLine.get(8)
 					);
+
 		}		
 	}
 }

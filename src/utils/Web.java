@@ -212,14 +212,20 @@ public class Web {
 					break;
 				case "TOGGLE":
 					try {
-						WebElement opt = e.findElement(By.cssSelector("input[value='" + argument + "'"));
-						opt.click();
+						if (argument.equalsIgnoreCase("true")) {
+							if (! e.isSelected()) {
+								e.sendKeys(" ");
+							}
+						} else {
+							if (e.isSelected()) {
+								e.sendKeys(" ");
+							}
+						}
 						status = 0;
 					} catch (Exception ee) {
 						Debug.ExceptionError(ee);
 						status = 2;
 					}
-					
 					
 					
 					break;
@@ -239,6 +245,7 @@ public class Web {
 					if(argument != "") {
 						try {
 							e.sendKeys(argument);
+							status = 0;
 						} catch (InvalidElementStateException iese) {
 							Debug.ExceptionError(iese);
 							status = 2;
@@ -253,7 +260,7 @@ public class Web {
 							status = 0;
 						}*/
 					}
-					status = 0;
+					
 					break;
 				case "STORE":
 					if (! argument.equals("")) {

@@ -1,11 +1,16 @@
 package utils;
 
+import java.util.List;
+import java.util.regex.Pattern;
+
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Browser {
 	public static WebDriver BrowserDriver;
@@ -24,6 +29,7 @@ public class Browser {
 				Cleanup.Terminate();
 			}
 		}
+		GetBrowserDetails();
 	}
 	
 	private static boolean SetBrowserFF() {
@@ -52,6 +58,12 @@ public class Browser {
 		
 	}
 	
+	private static void GetBrowserDetails() {
+		Capabilities cap = ((RemoteWebDriver) Browser.BrowserDriver).getCapabilities();
+		String[] browserVer = cap.getVersion().split(Pattern.quote("."));
+		Global.BrowserName += " v." + browserVer[0];
+		Debug.Log("Identified browser details: " + Global.BrowserName);
+	}
 	
 	private static void SetProxyFF() {
 		FirefoxProfile prof = new FirefoxProfile();
