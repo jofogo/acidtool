@@ -14,7 +14,7 @@ public class Action {
 	public static List<String[]> TestActionList;
 	public static List<String[]> TestObjectList;
 	private static int ctrSkip = 1, ctrTestObjectTotal = 0;
-	public static int ctrPass = 0, ctrFail = 0;
+	//public static int ctrPass = 0, ctrFail = 0;
 	public static int GetActionListCount() {
 		try {
 			Debug.Log("Retrieving the test actions from the test action file: " + Files.FileTestActions);
@@ -109,8 +109,13 @@ public class Action {
 								Web.PerformOnObject(Global.ObjectAction, Global.ObjectID, Global.ObjectParameter );
 								Debug.Trace("Action: " + Global.ObjectAction + " Object: " + Global.ObjectName + " ID: " + Global.ObjectID +  " Parameter: " + Global.ObjectParameter);
 							} else {
-								ActionStat = 4;
 								Global.ctrActionStatus = 4;
+								TestCase.ctrFail++;
+								try {
+									Thread.sleep(15000);
+								} catch (InterruptedException ie) {
+									
+								}
 							}
 							break;
 						}

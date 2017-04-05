@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.InvalidElementStateException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -187,8 +188,25 @@ public class Web {
 			if(WaitUntilVisible(e)) {
 				switch (action.toUpperCase()) {
 				case "CLICK":
-					e.click();
-					status = 0;
+					for (int ctrTry=0; ctrTry<Global.ctrMaxStepRetry;ctrTry++) {
+						try {
+							e.click();
+							status = 0;
+							break;
+						} catch (WebDriverException wde) {
+							try {
+								Actions actions = new Actions(Browser.BrowserDriver);
+								actions.moveToElement(e).click().perform();
+								status = 0;
+								break;
+							} catch (Exception ee) {
+								
+							}
+							
+							status = 2;
+							Debug.ExceptionError(wde);
+						}
+					}
 					break;
 				case "HOVER":
 					FocusOnObject();
